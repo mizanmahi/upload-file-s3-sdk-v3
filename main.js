@@ -9,7 +9,7 @@ config();
 const app = express();
 const port = 3000;
 
-// Configure AWS S3 Client
+
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
   credentials: {
@@ -18,7 +18,7 @@ const s3 = new S3Client({
   },
 });
 
-// Configure multer for file upload
+
 const upload = multer({ dest: 'uploads/' });
 
 app.post('/upload', upload.array('files', 10), async (req, res) => {
@@ -39,7 +39,7 @@ app.post('/upload', upload.array('files', 10), async (req, res) => {
       const command = new PutObjectCommand(params);
       await s3.send(command);
 
-      // Construct the URL (optional)
+      // Construct the URL
       const url = `https://${process.env.S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${params.Key}`;
       fileUrls.push(url);
 
