@@ -23,7 +23,13 @@ const upload = multer({ dest: 'uploads/' });
 
 app.post('/upload', upload.array('files', 10), async (req, res) => {
   try {
+
+    // console.log(req.files)
+
+    
+
     const files = req.files;
+    
     const fileUrls = [];
 
     for (const file of files) {
