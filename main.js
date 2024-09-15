@@ -19,7 +19,7 @@ const s3 = new S3Client({
 });
 
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.post('/upload', upload.array('files', 10), async (req, res) => {
   try {
@@ -29,11 +29,10 @@ app.post('/upload', upload.array('files', 10), async (req, res) => {
     const fileUrls = [];
 
     for (const file of files) {
-      const fileStream = fs.createReadStream(file.path);
       const params = {
         Bucket: process.env.S3_BUCKET_NAME,
         Key: `${Date.now()}_${file.originalname}`,
-        Body: fileStream,
+        Body: file.buffer,
         ContentType: file.mimetype,
       };
 
@@ -45,8 +44,7 @@ app.post('/upload', upload.array('files', 10), async (req, res) => {
       const url = `https://${process.env.S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${params.Key}`;
       fileUrls.push(url);
 
-      // Delete the file locally after uploading
-      fs.unlinkSync(file.path);
+
     }
 
     res.json({
@@ -58,6 +56,8 @@ app.post('/upload', upload.array('files', 10), async (req, res) => {
     res.status(500).send('Error uploading files');
   }
 });
+
+app.get('/', (req, res) => res.json({message: 'Welcome!'}))
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
