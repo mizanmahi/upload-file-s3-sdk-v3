@@ -20,13 +20,13 @@ This is a Node.js application that allows users to upload files to an AWS S3 buc
 
    ```bash
    git clone https://github.com/mizanmahi/upload-file-s3-sdk-v3.git
-   cd s3-file-upload
+   cd upload-file-s3-sdk-v3
    ```
 
 2. Install the dependencies:
 
    ```bash
-   npm install
+   yarn install
    ```
 
 3. Create a `.env` file in the root directory and configure the following environment variables:
