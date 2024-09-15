@@ -10,7 +10,7 @@ This is a Node.js application that allows users to upload files to an AWS S3 buc
 
 ## Prerequisites
 
--  **Node.js** (version 12.x or higher)
+-  **Node.js** (version 18.x or higher)
 -  **AWS Account** with an S3 bucket.
 -  **AWS IAM User** with the necessary permissions to upload files to the S3 bucket.
 
