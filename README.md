@@ -26,7 +26,7 @@ This is a Node.js application that allows users to upload files to an AWS S3 buc
 2. Install the dependencies:
 
    ```bash
-   npm install
+   yarn install
    ```
 
 3. Create a `.env` file in the root directory and configure the following environment variables:
