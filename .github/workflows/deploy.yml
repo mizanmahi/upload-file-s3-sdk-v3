@@ -1,5 +1,6 @@
 name: Deploy the application
 on:
+   workflow_dispatch:
    push:
       branches:
          - dev
@@ -13,4 +14,4 @@ jobs:
       runs-on: ubuntu-latest
       needs: my_first_job
       steps:
-         - run: echo "second job is running"
+         - run: echo "${{ inputs.deploy_target }}"
