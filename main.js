@@ -57,7 +57,7 @@ app.post('/upload', upload.array('files', 10), async (req, res) => {
   }
 });
 
-app.get('/', (req, res) => res.json({message: 'Welcome!'}))
+app.get('/', (req, res) => res.json({message: 'Welcome to file uploader with aws sdk v3!'}))
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
